@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
+from oteapi.plugins import load_plugins
 
 from app.context import mapping
-from oteapi.plugins import load_plugins
 
 from .dummycache import DummyCache
 

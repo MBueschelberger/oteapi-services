@@ -1,18 +1,17 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-
-from app.context import transformation
 from oteapi.models.transformationconfig import TransformationStatus
 from oteapi.plugins import load_plugins
 
+from app.context import transformation
+
 from .dummycache import DummyCache
 
-app = FastAPI()
+load_plugins()
 
+app = FastAPI()
 app.include_router(transformation.router, prefix="/transformation")
 client = TestClient(app)
-
-load_plugins()
 
 
 async def override_depends_redis() -> DummyCache:
